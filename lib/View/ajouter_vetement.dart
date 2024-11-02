@@ -29,7 +29,6 @@ class _AjouterVetementState extends State<AjouterVetement> {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      // Read the image as bytes
       _imageData = await pickedFile.readAsBytes();
       setState(() {
         classifyImage(_imageData!);
@@ -104,7 +103,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
           prix: double.parse(prixController.text),
           image: base64Image!,
           id: '');
-
+      print("this is new vetement : ${newVetement.marque}");
       vetementController.addVetement(newVetement);
 
       ScaffoldMessenger.of(context).showSnackBar(
@@ -169,7 +168,6 @@ class _AjouterVetementState extends State<AjouterVetement> {
             if (_imageData != null)
               Column(
                 children: [
-                  // Display the image from memory
                   Image.memory(_imageData!, height: 150),
                   if (_loading) CircularProgressIndicator(),
                   if (_classificationResult != null)
@@ -186,7 +184,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
             SizedBox(height: 32),
             Center(
               child: ElevatedButton(
-                onPressed: _saveVetement, // Call the save logic here
+                onPressed: _saveVetement,
                 child: Text('Enregistrer'),
               ),
             ),

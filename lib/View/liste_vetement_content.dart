@@ -60,7 +60,7 @@ class _ListeVetementContentState extends State<ListeVetementContent> {
                         style: TextStyle(fontSize: 16),
                       ),
                       Text(
-                        'Prix: \$${vetement.prix.toStringAsFixed(2)}', // Format price
+                        'Prix: \$${vetement.prix.toStringAsFixed(2)}',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],

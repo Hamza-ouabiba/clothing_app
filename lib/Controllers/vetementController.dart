@@ -18,6 +18,7 @@ class VetementController {
         'categorie': vetement.categorie,
         'prix': vetement.prix,
         'image': vetement.image,
+        'marque': vetement.marque
       });
     } catch (e) {
       print('Error adding vetement: $e');

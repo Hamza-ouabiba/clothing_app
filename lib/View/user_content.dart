@@ -68,6 +68,7 @@ class _UserContentState extends State<UserContent> {
       'adress': addressController.text,
       'postalCode': postalCodeController.text,
       'city': cityController.text,
+      'password': passwordController.text
     };
 
     try {
@@ -104,15 +105,13 @@ class _UserContentState extends State<UserContent> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Logout button at the top
                   Align(
                     alignment: Alignment.topRight,
                     child: ElevatedButton(
                       onPressed: _logout,
                       child: Text('Se déconnecter'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Colors.white, // Set the button color to red
+                        backgroundColor: Colors.white,
                       ),
                     ),
                   ),
@@ -157,7 +156,6 @@ class _UserContentState extends State<UserContent> {
                     readOnly: false,
                   ),
                   SizedBox(height: 32),
-                  // Add the buttons at the bottom
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -166,7 +164,7 @@ class _UserContentState extends State<UserContent> {
                         child: Text('Valider'),
                       ),
                       ElevatedButton(
-                        onPressed: _addClothingItem, // Add clothing item button
+                        onPressed: _addClothingItem,
                         child: Text('Ajouter un vêtement'),
                       ),
                     ],

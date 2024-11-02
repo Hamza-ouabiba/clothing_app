@@ -14,7 +14,6 @@ class _HomePageState extends State<HomePage> {
 
   int _selectedIndex = 0;
 
-  // Method to handle tab changes
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -31,7 +30,7 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Home Page'),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex, // Highlight the selected tab
+        currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -49,10 +48,10 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: _selectedIndex == 0
-          ? ListeVetementContent() // Display the vetement content
+          ? ListeVetementContent()
           : _selectedIndex == 1
               ? ListePanierContent()
-              : UserContent(), // Display the panier content
+              : UserContent(),
     );
   }
 }
