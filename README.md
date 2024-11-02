@@ -2,6 +2,16 @@
 
 Ce projet est une application de gestion de vêtements développée avec Flutter, intégrant un système de classification d'images basé sur l'IA qui catégorise automatiquement les vêtements en fonction des images téléchargées. 
 
+##Utilisateurs
+
+Premier utilisateur : 
+      Login: user1
+      Password: password1
+Deuxième utilisateur : 
+      Login: user2
+      Password: password2
+
+
 ## Prise en Main
 
 
