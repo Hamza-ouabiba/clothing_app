@@ -9,4 +9,19 @@ class VetementController {
     QuerySnapshot querySnapshot = await vetementsCollection.get();
     return querySnapshot.docs.map((doc) => Vetement.fromDocument(doc)).toList();
   }
+
+  Future<void> addVetement(Vetement vetement) async {
+    try {
+      await vetementsCollection.add({
+        'titre': vetement.titre,
+        'taille': vetement.taille,
+        'categorie': vetement.categorie,
+        'prix': vetement.prix,
+        'image': vetement.image,
+      });
+    } catch (e) {
+      print('Error adding vetement: $e');
+      throw e;
+    }
+  }
 }

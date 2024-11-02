@@ -1,3 +1,4 @@
+import 'package:clothing_app/View/ajouter_vetement.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,6 @@ class _UserContentState extends State<UserContent> {
 
   Future<void> _logout() async {
     await FirebaseAuth.instance.signOut();
-    // Navigate back to the login page after logout
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => Login(title: 'MiageD')),
@@ -70,10 +70,8 @@ class _UserContentState extends State<UserContent> {
     };
 
     try {
-      // Update Firestore user data
       await userController.updateUser(userId, userInfo);
 
-      // Update Firebase Auth password
       User? user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         await user.updatePassword(passwordController.text);
@@ -88,12 +86,11 @@ class _UserContentState extends State<UserContent> {
     }
   }
 
-  // Function to add a clothing item
   Future<void> _addClothingItem() async {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Ajout d\'un vêtement')),
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => AjouterVetement()),
     );
-    // Your logic to add a clothing item goes here
   }
 
   @override

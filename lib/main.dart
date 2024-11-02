@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'Firebase/firebase_options.dart';
 
 void main() async {
-  // Initialize Firebase asynchronously
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
