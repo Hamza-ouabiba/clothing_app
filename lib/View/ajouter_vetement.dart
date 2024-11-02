@@ -19,11 +19,10 @@ class _AjouterVetementState extends State<AjouterVetement> {
   final TextEditingController marqueController = TextEditingController();
   final TextEditingController prixController = TextEditingController();
 
-  Uint8List? _imageData; // For storing the image data when picked
+  Uint8List? _imageData;
   bool _loading = false;
   String? _classificationResult;
 
-  // Instantiate your VetementController
   final VetementController vetementController = VetementController();
 
   Future<void> _pickImage() async {
@@ -44,11 +43,14 @@ class _AjouterVetementState extends State<AjouterVetement> {
       _classificationResult = null;
     });
 
+    final serverUrl = kIsWeb
+        ? 'http://127.0.0.1:5000/predict'
+        : 'http://10.0.2.2:5000/predict';
+
     try {
       final request = http.MultipartRequest(
         'POST',
-        Uri.parse(
-            'http://127.0.0.1:5000/predict'), // Update with your server URL
+        Uri.parse(serverUrl),
       );
       request.files.add(http.MultipartFile.fromBytes('file', imageData,
           filename: 'image.png'));
@@ -56,18 +58,15 @@ class _AjouterVetementState extends State<AjouterVetement> {
       final response = await request.send();
       final responseBody = await http.Response.fromStream(response);
       if (response.statusCode == 200) {
-        // Assuming the server returns a JSON with classification result
         final data = json.decode(responseBody.body);
         print(data);
-        // Extract the class with the highest probability
+
         if (data['prediction'] != null && data['prediction'].isNotEmpty) {
           final prediction = data['prediction'];
 
           setState(() {
-            _classificationResult = prediction['class']; // Get the class name
-            // Populate the category field with the top prediction
-            categorieController.text =
-                _classificationResult ?? ''; // Update the category controller
+            _classificationResult = prediction['class'];
+            categorieController.text = _classificationResult ?? '';
           });
         }
       } else {
@@ -92,7 +91,6 @@ class _AjouterVetementState extends State<AjouterVetement> {
         categorieController.text.isNotEmpty &&
         marqueController.text.isNotEmpty &&
         prixController.text.isNotEmpty) {
-      // Convert the image data to a Base64 string
       String? base64Image;
       if (_imageData != null) {
         base64Image = base64Encode(_imageData!);
@@ -107,26 +105,22 @@ class _AjouterVetementState extends State<AjouterVetement> {
           image: base64Image!,
           id: '');
 
-      // Call the method to add the Vetement
       vetementController.addVetement(newVetement);
 
-      // Optionally, show a confirmation message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Vêtement enregistré avec succès')),
       );
 
-      // Clear the form after saving
       titreController.clear();
       tailleController.clear();
       categorieController.clear();
       marqueController.clear();
       prixController.clear();
       setState(() {
-        _imageData = null; // Reset the image
-        _classificationResult = null; // Reset the classification result
+        _imageData = null;
+        _classificationResult = null;
       });
     } else {
-      // Handle the case where the form is not filled correctly
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Veuillez remplir tous les champs')),
       );
@@ -155,6 +149,7 @@ class _AjouterVetementState extends State<AjouterVetement> {
             TextField(
               controller: categorieController,
               decoration: InputDecoration(labelText: 'Catégorie'),
+              readOnly: true,
             ),
             TextField(
               controller: marqueController,

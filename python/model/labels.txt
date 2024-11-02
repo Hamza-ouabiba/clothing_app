@@ -1,0 +1,3 @@
+0 Pantalon
+1 Short
+2 T-shirt

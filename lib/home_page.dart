@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
-  int _selectedIndex = 0; // Track the selected tab index
+  int _selectedIndex = 0;
 
   // Method to handle tab changes
   void _onItemTapped(int index) {

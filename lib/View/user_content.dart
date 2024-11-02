@@ -20,7 +20,7 @@ class _UserContentState extends State<UserContent> {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController postalCodeController = TextEditingController();
   final TextEditingController cityController = TextEditingController();
-
+  final TextEditingController loginController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -43,6 +43,7 @@ class _UserContentState extends State<UserContent> {
             addressController.text = utilisateur!.adress;
             postalCodeController.text = utilisateur!.postalCode;
             cityController.text = utilisateur!.city;
+            loginController.text = this.userId!;
           });
         } else {
           print('User document does not exist');
@@ -116,7 +117,12 @@ class _UserContentState extends State<UserContent> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  Text('Login: ${this.userId}', style: TextStyle(fontSize: 18)),
+                  TextField(
+                    controller: loginController,
+                    obscureText: false,
+                    decoration: InputDecoration(labelText: 'Login'),
+                    readOnly: true,
+                  ),
                   SizedBox(height: 16),
                   TextField(
                     controller: passwordController,

@@ -60,34 +60,21 @@ class _LoginState extends State<Login> {
           password: password,
         );
 
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Login successful')),
-        );
-
-        //redirection vers page d'acceuil
-        print('User logged in: ${userCredential.user!.email}');
-
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Utilisateur non trouvé')),
-        );
+        print("utilisateur n'existe pas"); //minima un log
       }
     } on FirebaseAuthException catch (e) {
-      // Handle authentication errors
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: ${e.message}')),
+        SnackBar(content: Text('erreur d authentification : ${e.message}')),
       );
-      print("Error: ${e.message}");
     } catch (e) {
-      // Handle other errors
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('An error occurred: ${e.toString()}')),
       );
-      print("Error: ${e}");
     }
   }
 
