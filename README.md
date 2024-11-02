@@ -30,3 +30,9 @@ Deuxième utilisateur :
 4. Lancez l'application
    ```bash
    flutter run
+
+
+## Vidéo demonstration
+
+https://github.com/user-attachments/assets/fb2e16a1-b5ce-4b16-a03d-2ab9ad6abcd3
+
