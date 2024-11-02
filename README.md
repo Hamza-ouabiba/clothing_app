@@ -2,15 +2,6 @@
 
 Ce projet est une application de gestion de vêtements développée avec Flutter, intégrant un système de classification d'images basé sur l'IA qui catégorise automatiquement les vêtements en fonction des images téléchargées. 
 
-## Technologies Utilisées
-
-- **Flutter** pour le développement mobile.
-- **Dart** comme langage de programmation.
-- **Python** et Flask pour le backend du modèle IA.
-- **Modèle de Classification d'Images** pour la prédiction de la catégorie des vêtements.
-- Package **HTTP** pour la gestion des requêtes.
-- Package **Image Picker** pour sélectionner des images depuis la galerie.
-
 ## Prise en Main
 
 
